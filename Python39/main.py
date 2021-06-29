@@ -124,6 +124,7 @@ while True:
            if pos!='Center':		   
              cv.putText(image,f'{pos}',(140,95),m.fonts,0.6,color[1],2)
              print(pos)
+             sys.stdout.flush()
         cv.imshow('Frame', image)
     else:
         cv.imshow('Frame', frame)
