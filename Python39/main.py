@@ -2,7 +2,7 @@ import cv2 as cv
 import numpy as np
 import module as m
 import time
-
+import sys
 # Variables
 COUNTER = 0
 TOTAL_BLINKS = 0
@@ -14,7 +14,7 @@ FRAME_COUNTER = 0
 START_TIME = time.time()
 FPS = 0
 
-
+c=0
 # creating camera object
 camera = cv.VideoCapture(0)
 # camera.set(3, 640)
@@ -67,9 +67,12 @@ while True:
         # cv.circle(image, bottomMid, 2, m.YELLOW, -1)
         #print(dis)
         #print(openRatio)
-        if openRatio <4.6:
-            # print(openRatio)
-            cv.putText(image,"mouth open",(70,100),m.fonts,0.8,m.LIGHT_BLUE,2)
+        if openRatio <5.0:
+            c+=1
+            if c>1:
+                cv.putText(image,"mouth open",(70,100),m.fonts,0.8,m.LIGHT_BLUE,2)
+        else:
+            c=0
         blinkRatio = (leftRatio + rightRatio)/2
         #cv.circle(image, circleCenter, (int(blinkRatio*4.3)), m.CHOCOLATE, -1)
         #cv.circle(image, circleCenter, (int(blinkRatio*3.2)), m.CYAN, 2)
