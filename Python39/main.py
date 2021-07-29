@@ -60,7 +60,7 @@ while True:
         rightRatio, rTop, rBottom = m.blinkDetector(RightEyePoint)
         lowmouthpoint=PointList[60:68]
         openRatio, motopMid, mobottomMid = m.mouthopen(lowmouthpoint)
-        dis=m.eucaldainDistance(PointList[51], PointList[57])
+        #dis=m.eucaldainDistance(PointList[51], PointList[57])
         #dis2=m.eucaldainDistance(PointList[67],PointList[63])
         #print(dis2)
         # cv.circle(image, topMid, 2, m.YELLOW, -1)
@@ -87,8 +87,8 @@ while True:
             if COUNTER > CLOSED_EYES_FRAME:
                 TOTAL_BLINKS += 1
                 COUNTER = 0
-        cv.putText(image, f'Total Blinks: {TOTAL_BLINKS}', (230, 17),
-                   m.fonts, 0.5, m.ORANGE, 2)
+        # cv.putText(image, f'Total Blinks: {TOTAL_BLINKS}', (230, 17),
+                   # m.fonts, 0.5, m.ORANGE, 2)
 
         # for p in LeftEyePoint:
         #     cv.circle(image, p, 3, m.MAGENTA, 1)
@@ -107,8 +107,8 @@ while True:
 
         # writing text on above line
         cv.putText(image, f'{pos}', (35, 95), m.fonts, 0.6, color[1], 2)
-        cv.putText(image, f'{leftPos}', (int(width-140), 95),
-                   m.fonts, 0.6, leftColor[1], 2)
+        # cv.putText(image, f'{leftPos}', (int(width-140), 95),
+                   # m.fonts, 0.6, leftColor[1], 2)
         #cv.putText(image, f'Right Eye', (35, 55), m.fonts, 0.6, color[1], 2)
         #cv.putText(image, f'Left Eye', (int(width-145), 55),
         #          m.fonts, 0.6, leftColor[1], 2)
@@ -123,13 +123,21 @@ while True:
 		
         #########################################################################################################
         # showing the frame on the screen
+        if pos=='Right':
+           print(pos)
+           sys.stdout.flush()
         if pos==leftPos:
            if pos!='Center':		   
              cv.putText(image,f'{pos}',(140,95),m.fonts,0.6,color[1],2)
-             print(pos)
+             print(leftPos)
              sys.stdout.flush()
+           if pos=="Center":
+               print("okk")
+               sys.stdout.flush()
         cv.imshow('Frame', image)
     else:
+        print("Face Not Found")
+        sys.stdout.flush()
         cv.imshow('Frame', frame)
 
     # Recoder.write(frame)
